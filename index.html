@@ -1,0 +1,73 @@
+<html>
+<head>
+	<title>TimeUntilTheNextWobble</title>
+	<script type="text/javascript" src="date.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="jquery-1.8.1.min.js"><\/script>')</script>
+	<script type="text/javascript">
+		$(function () {
+			wobbletime = Date.parse("15th September 2012 22:00");
+
+			var _second = 1000;
+			var _minute = _second * 60;
+			var _hour = _minute * 60;
+			var _day = _hour *24
+
+			var $days = $('#countdown .days');
+			var $hours = $('#countdown .hours');
+			var $minutes = $('#countdown .minutes');
+			var $seconds = $('#countdown .seconds');
+
+			function pad(num, size) {
+	    		var s = "0000000" + num;
+	    		return s.substr(s.length-size);
+			}
+
+			function parsetogo(mili) {
+				return {
+					days: Math.floor(mili / _day),
+	    			hours: Math.floor( (mili % _day ) / _hour ),
+	    			minutes: Math.floor( (mili % _hour) / _minute ),
+	    			seconds: Math.floor( (mili % _minute) / _second )
+	    		}
+			}
+
+			function showCount(togo) {
+				togo = parsetogo(togo);
+				$days.text(    pad(togo.days, 2));
+				$hours.text(   pad(togo.hours, 2));
+				$minutes.text( pad(togo.minutes, 2));
+				$seconds.text( pad(togo.seconds, 2));
+			}
+
+
+			(function loopsy() {
+				var now = Date.now();
+				togo = wobbletime - now;
+				showCount(togo);
+				setTimeout(loopsy, 100);
+			})();
+		})
+	</script>
+	<style type="text/css">
+		body {
+			padding-top: 60px;
+			font-size: 200%;
+			background-color: black;
+			color: white;
+		}
+		#countdown {
+			font-family: sans-serif;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="countdown">
+		<span class="days"></span> Days
+		<span class="hours"></span> Hours
+		<span class="minutes"></span> Minutes
+		<span class="seconds"></span> Seconds until WOBBLE!!!
+	</div>
+</body>
+</html>
