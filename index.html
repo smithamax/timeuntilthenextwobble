@@ -6,7 +6,14 @@
 	<script>window.jQuery || document.write('<script src="jquery-1.8.1.min.js"><\/script>')</script>
 	<script type="text/javascript">
 		$(function () {
-			wobbletime = Date.parse("15th September 2012 22:00");
+			var getNextWobble = function(){
+				var now = new Date();
+				var wob = new Date(now.getFullYear(), now.getMonth(), 1, 22, 0, 0, 0);
+				wob.setDate(21-wob.getDay());
+				return wob;
+			};
+
+			wobbletime = getNextWobble();
 
 			var _second = 1000;
 			var _minute = _second * 60;
