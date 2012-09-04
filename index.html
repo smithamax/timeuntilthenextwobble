@@ -7,8 +7,8 @@
 		$(function () {
 			var getNextWobble = function(){
 				var now = new Date();
-				var wob = new Date(now.getFullYear(), now.getMonth(), 1, 22, 0, 0, 0);
-				wob.setDate(21-wob.getDay());
+				var wob = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1, 12, 0, 0, 0));
+				wob.setUTCDate(21-wob.getUTCDay());
 				return wob;
 			};
 
