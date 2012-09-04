@@ -26,17 +26,17 @@
 			var $seconds = $('#countdown .seconds');
 
 			function pad(num, size) {
-	    		var s = "0000000" + num;
-	    		return s.substr(s.length-size);
+				var s = "0000000" + num;
+				return s.substr(s.length-size);
 			}
 
 			function parsetogo(mili) {
 				return {
 					days: Math.floor(mili / _day),
-	    			hours: Math.floor( (mili % _day ) / _hour ),
-	    			minutes: Math.floor( (mili % _hour) / _minute ),
-	    			seconds: Math.floor( (mili % _minute) / _second )
-	    		}
+					hours: Math.floor( (mili % _day ) / _hour ),
+					minutes: Math.floor( (mili % _hour) / _minute ),
+					seconds: Math.floor( (mili % _minute) / _second )
+				}
 			}
 
 			function showCount(togo) {
@@ -76,5 +76,18 @@
 		<span class="minutes"></span> Minutes
 		<span class="seconds"></span> Seconds until WOBBLE!!!
 	</div>
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-25733650-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
 </body>
 </html>
