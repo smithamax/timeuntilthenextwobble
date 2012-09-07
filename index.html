@@ -103,7 +103,6 @@
 	</script>
 	<style type="text/css">
 		body {
-			padding-top: 60px;
 			font-size: 200%;
 			background-color: black;
 			color: white;
@@ -111,25 +110,25 @@
 		#countdown, #date {
 			font-family: sans-serif;
 			text-align: center;
+			padding-top: 60px;
 		}
 		#date {
-			padding-top: 60px;
 			font-size: 300%;
 			color: #333;
 		}
 	</style>
 </head>
 <body>
+	<div id="date">
+		<span class="day"></span>
+		<span class="month"></span>
+		<span class="time"></span>
+	</div>
 	<div id="countdown">
 		<span class="days"></span> Days
 		<span class="hours"></span> Hours
 		<span class="minutes"></span> Minutes
 		<span class="seconds"></span> Seconds until WOBBLE!!!
-	</div>
-	<div id="date">
-		<span class="day"></span>
-		<span class="month"></span>
-		<span class="time"></span>
 	</div>
 	<script type="text/javascript">
 
