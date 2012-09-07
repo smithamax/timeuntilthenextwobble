@@ -8,7 +8,15 @@
 			var getNextWobble = function (n){
 				n = n || 0;
 				var now = new Date();
+
 				var wob = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + n, 1, 12, 0, 0, 0));
+
+				// not a good way of do daylight savings
+				// but works as wobble is on the 3rd saturday.
+				if (wob.getMonth() < 3 || wob.getMonth() >= 9) {
+					wob.setUTCHours(wob.getUTCHours() - 1);
+				}
+
 				wob.setUTCDate(21 - wob.getUTCDay());
 				if (wob < now) {
 					return getNextWobble(n + 1);
