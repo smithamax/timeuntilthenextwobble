@@ -17,17 +17,35 @@
 				}
 			};
 
-			wobbletime = getNextWobble();
+			var wobbletime = getNextWobble();
 
 			var _second = 1000;
 			var _minute = _second * 60;
 			var _hour = _minute * 60;
-			var _day = _hour *24
+			var _day = _hour *24;
+
+			var daypostfix = {
+				1: "1st",
+				2: "2nd",
+				3: "3rd",
+				21: "21st",
+				22: "22nd",
+				23: "23rd",
+				31: "31st"
+			};
+			var months = [
+				'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+				'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+			];
 
 			var $days = $('#countdown .days');
 			var $hours = $('#countdown .hours');
 			var $minutes = $('#countdown .minutes');
 			var $seconds = $('#countdown .seconds');
+
+			var $day = $('#date .day');
+			var $month = $('#date .month');
+			var $time = $('#date .time');
 
 			function pad(num, size) {
 				var s = "0000000" + num;
@@ -51,6 +69,21 @@
 				$seconds.text( pad(togo.seconds, 2));
 			}
 
+			function showDate(date) {
+				var day = date.getDate();
+				day = daypostfix[day] || day + "th";
+
+				var month = months[date.getMonth()];
+
+				var hour = date.getHours();
+				hour = (hour%12 || 12) + (hour < 12 ? 'a' : 'p');
+
+				$day.text(day);
+				$month.text(month);
+				$time.text(hour);
+			}
+
+			showDate(wobbletime);
 
 			(function loopsy() {
 				var now = Date.now();
@@ -67,9 +100,14 @@
 			background-color: black;
 			color: white;
 		}
-		#countdown {
+		#countdown, #date {
 			font-family: sans-serif;
 			text-align: center;
+		}
+		#date {
+			padding-top: 60px;
+			font-size: 300%;
+			color: #333;
 		}
 	</style>
 </head>
@@ -79,6 +117,11 @@
 		<span class="hours"></span> Hours
 		<span class="minutes"></span> Minutes
 		<span class="seconds"></span> Seconds until WOBBLE!!!
+	</div>
+	<div id="date">
+		<span class="day"></span>
+		<span class="month"></span>
+		<span class="time"></span>
 	</div>
 	<script type="text/javascript">
 
